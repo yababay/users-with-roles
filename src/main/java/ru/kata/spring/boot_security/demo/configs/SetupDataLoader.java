@@ -41,19 +41,19 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         Set<Role> userRoles = new HashSet<>();
         userRoles.add(userRole);
 
-        User user1 = new User("user1", "User", "Userson", "userson@server.com", "user1");
+        User user1 = new User("User", "Userson", "userson@server.com", 22, "user1");
         user1.setRoles(userRoles);
         userRepository.save(user1);
 
-        User user2 = new User("user2", "User", "Userman", "userman@server.com", "user2");
+        User user2 = new User("User", "Userman", "userman@server.com", 23, "user2");
         user2.setRoles(userRoles);
         userRepository.save(user2);
 
-        User admin1 = new User("admin1", "Admin", "Adminson", "adminson@server.com", "admin1");
+        User admin1 = new User("Admin", "Adminson", "adminson@server.com", 24, "admin1");
         admin1.setRoles(adminRoles);
         userRepository.save(admin1);
 
-        User admin2 = new User("admin2", "Admin", "Adminman", "adminman@server.com", "admin2");
+        User admin2 = new User("Admin", "Adminman", "adminman@server.com", 25, "admin2");
         admin2.setRoles(adminRoles);
         userRepository.save(admin2);
 

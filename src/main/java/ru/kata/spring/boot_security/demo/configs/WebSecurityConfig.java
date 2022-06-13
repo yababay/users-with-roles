@@ -21,33 +21,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final SuccessUserHandler successUserHandler;
 
     @Autowired
-    public WebSecurityConfig(SuccessUserHandler successUserHandler/*, MyUserDetailsService myUserDetailsService*/) {
+    public WebSecurityConfig(SuccessUserHandler successUserHandler) {
         this.successUserHandler = successUserHandler;
-    //    this.myUserDetailsService = myUserDetailsService;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .cors().disable()
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/", "/index", "/css/**", "/js/**", "/favicon.ico", "/login", "/error").permitAll()
-                .antMatchers("/admin").hasAuthority("ADMIN")
-                .antMatchers("/user").hasAnyAuthority("ADMIN", "USER")
-                .anyRequest().authenticated()
+            .cors().disable()
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers("/", "/index", "/css/**", "/js/**", "/favicon.ico", "/login", "/error").permitAll()
+            .antMatchers("/admin/**").hasAuthority("ADMIN")
+            .antMatchers("/api/**").hasAuthority("ADMIN")
+            .antMatchers("/user/**").hasAnyAuthority("ADMIN", "USER")
+            .anyRequest().authenticated()
 
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .usernameParameter("email")
-                .successHandler(successUserHandler)
-                .permitAll()
+            .and()
+            .formLogin()
+            .loginPage("/login")
+            .usernameParameter("email")
+            .successHandler(successUserHandler)
+            .permitAll()
 
-                .and()
-                .logout()
-                .logoutSuccessUrl("/")
-                .permitAll();
+            .and()
+            .logout()
+            .logoutSuccessUrl("/")
+            .permitAll();
     }
 
 }

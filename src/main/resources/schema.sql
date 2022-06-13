@@ -6,11 +6,11 @@ create table role (id int not null auto_increment, name varchar(128) not null un
 
 create table user (
     id int not null auto_increment,
-    name varchar(128) not null unique,
     password varchar(255) not null,
-    email varchar(128) not null,
+    email varchar(128) not null unique,
     first_name varchar(128),
     last_name varchar(128),
+    age int,
     primary key(id)
 );
 

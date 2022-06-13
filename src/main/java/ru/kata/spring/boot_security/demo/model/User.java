@@ -22,9 +22,6 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(unique=true, nullable = false)
-    private String name;
-
-    @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
@@ -35,6 +32,9 @@ public class User implements UserDetails {
 
     @Column
     private String lastName;
+
+    @Column
+    private int age;
 
     @ManyToMany(cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
     @JoinTable(
@@ -51,12 +51,21 @@ public class User implements UserDetails {
     public User(){
     }
 
-    public User(String name, String firstName, String lastName, String email, String password){
-        this.name = name;
+    public User(String firstName, String lastName, String email, int age, String password){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.age = age;
         this.password = passwordEncoder().encode(password);
+    }
+
+    public User(long id, String firstName, String lastName, String email, int age, Set<Role> roles){
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.age = age;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -65,14 +74,6 @@ public class User implements UserDetails {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getFirstName() {
@@ -107,6 +108,14 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles;
@@ -118,7 +127,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.name;
+        return this.email;
     }
 
     @Override
@@ -147,6 +156,6 @@ public class User implements UserDetails {
 
     @Override
     public String toString(){
-        return name + " (" + id + ")";
+        return email + " (" + id + ")";
     }
 }

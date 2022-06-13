@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.repository;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -15,4 +16,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("from User where email = (:email)")
     User findByEmail(String email);
+
 }
