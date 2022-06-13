@@ -36,6 +36,9 @@ public class User implements UserDetails {
     @Column
     private int age;
 
+    @Transient
+    private List<Long> roleIds;
+
     @ManyToMany(cascade = { CascadeType.MERGE }, fetch = FetchType.LAZY)
     @JoinTable(
         name = "users_and_roles",
@@ -44,11 +47,17 @@ public class User implements UserDetails {
     )
     private Set<Role> roles;
 
-    private static PasswordEncoder passwordEncoder() {
+    public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     public User(){
+    }
+
+    public User(String email, String password, List<Long> rolesIds){
+        this.email = email;
+        this.password = passwordEncoder().encode(password);
+        this.roleIds = rolesIds;
     }
 
     public User(String firstName, String lastName, String email, int age, String password){
@@ -66,6 +75,14 @@ public class User implements UserDetails {
         this.email = email;
         this.age = age;
         this.roles = roles;
+    }
+
+    public List<Long> getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(List<Long> roleIds) {
+        this.roleIds = roleIds;
     }
 
     public Long getId() {
