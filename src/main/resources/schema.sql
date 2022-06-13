@@ -2,7 +2,7 @@ drop table if exists user cascade;
 drop table if exists role cascade;
 drop table if exists users_and_roles cascade;
 
-create table role (id int not null auto_increment, name varchar(128) not null unique, primary key(id));
+create table role (id int not null auto_increment, name varchar(128) not null unique, description varchar(128), primary key(id));
 
 create table user (
     id int not null auto_increment,

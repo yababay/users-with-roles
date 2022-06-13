@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charSet="utf-8" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <script src="./js/bootstrap.min.js" defer></script>
+    <title>Custom login form</title>
+</head>
+<body>
+    <section class="container" style="margin: 1rem auto; max-width: 320px">
+        <form class="form-signin" action="/login" method="post">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <div class="mb-3">
+                <input type="email" class="form-control" placeholder="E.g. name@example.com" name="email">
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" placeholder="Type your password here" name="password">
+            </div>
+            <div class="mb-3">
+                <input type="submit" class="btn btn-primary" value="Sign in" style="width: 100%">
+            </div>
+        </form>
+    </section>
+</body>
+</html>

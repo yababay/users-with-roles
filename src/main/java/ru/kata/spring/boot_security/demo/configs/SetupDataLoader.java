@@ -31,8 +31,8 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
-        Role adminRole = new Role (ROLE_ADMIN, "Administrator");
-        Role userRole = new Role (ROLE_USER, "Simple user");
+        Role adminRole = new Role (ROLE_ADMIN, "ADMIN", "Administrator");
+        Role userRole = new Role (ROLE_USER, "USER","Simple user");
         roleRepository.save(adminRole);
         roleRepository.save(userRole);
         Set<Role> adminRoles = new HashSet<>();

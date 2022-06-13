@@ -1,18 +1,18 @@
 package ru.kata.spring.boot_security.demo.repository;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
+
+import javax.persistence.NamedNativeQuery;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    /*@Query ("SELECT p FROM User p JOIN FETCH p.roles where p.name = (:name)")
-    User findUserByName(String name);
-
-    @Query ("SELECT p FROM User p JOIN FETCH p.roles where p.id = (:id)")
-    User findUserById(Long id);*/
-
+    @Query("from User where email = (:email)")
+    User findByEmail(String email);
 }
